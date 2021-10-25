@@ -12,10 +12,22 @@ ApplicationWindow {
         anchors.fill: parent
         currentIndex: 0
 
+        Connections {
+            target: networkManager
+            onLoginSuccess: {
+                swipeView.currentIndex = 1
+                page2.imageSource = imageSource
+                page2.title = title
+                page2.subtitle = subtitle
+            }
+        }
+
         Page1 {
+            objectName: "page1Object"
         }
 
         Page2 {
+            id:page2
         }
     }
 }

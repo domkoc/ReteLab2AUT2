@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
+#include "networkmanager.h"
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
@@ -18,6 +19,11 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+    NetworkManager *myManager = new NetworkManager();
+    QObject *page1 = engine.rootObjects()[0]->findChild<QObject*>("page1Object");
+    QObject::connect(page1, SIGNAL(loginPressed(QVariant,QVariant)), myManager, SLOT(login(QVariant,QVariant)));
+    engine.rootContext()->setContextProperty("networkManager", myManager);
 
     return app.exec();
 }

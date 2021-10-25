@@ -1,11 +1,15 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.Layouts 6.0
+import QtQuick.Layouts 1.3
 
 Item {
     id: item1
     width: 600
     height: 400
+
+    property alias button: button
+    property alias username: userNameTextField.text
+    property alias password: passwordTextField.text
 
     Label {
         id: label
@@ -38,7 +42,7 @@ Item {
         }
 
         TextField {
-            id: textField
+            id: userNameTextField
             placeholderText: qsTr("Text Field")
         }
 
@@ -48,7 +52,8 @@ Item {
         }
 
         TextField {
-            id: textField1
+            id: passwordTextField
+            echoMode: TextInput.Password
             placeholderText: qsTr("Text Field")
         }
 
@@ -57,5 +62,4 @@ Item {
             text: qsTr("Login")
         }
     }
-
 }
